@@ -1,144 +1,220 @@
 :root {
-    /* Палитра флага Башкортостана */
-    --bash-green: #007749;  /* Зеленый */
-    --bash-white: #FFFFFF;  /* Белый */
-    --bash-blue: #0077C8;   /* Синий */
-    
-    /* Дополнительные цвета */
-    --honey-gold: #FFC72C;  /* Золото/Мед */
-    --bg-light: #F0F4F2;
-    --text-dark: #1A1A1A;
+    --black: #080808;
+    --dark-grey: #121212;
+    --accent-red: #ff0000;
+    --text-white: #ffffff;
+    --text-grey: #a0a0a0;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(160deg, var(--bash-green) 0%, #004d30 100%);
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-dark);
-}
-
-.app {
-    width: 100%;
-    max-width: 420px;
-    height: 90vh;
-    max-height: 850px;
-    background: var(--bg-light);
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    overflow-y: auto;
-    position: relative;
-    border: 4px solid var(--bash-white);
-}
-
-/* Логотип Курай */
-.kurai-header {
-    background: var(--bash-white);
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid var(--bash-green);
-}
-
-.logo-text {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--bash-green);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.logo-sub {
-    font-size: 12px;
-    color: var(--bash-blue);
+    background-color: var(--black);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Arial, sans-serif;
     font-weight: 600;
+    overflow-x: hidden;
 }
 
-/* Экраны */
-.screen { display: none; padding: 20px; animation: fade 0.3s; }
-.screen.active { display: block; }
+/* Фон */
+.bg-layer {
+    position: fixed; width: 100%; height: 100%; z-index: -1; overflow: hidden;
+}
+.glow {
+    position: absolute; width: 600px; height: 600px; border-radius: 50%;
+    filter: blur(140px); opacity: 0.2;
+}
+.blob-red { background: var(--accent-red); top: -100px; right: -100px; animation: pulse 8s infinite alternate; }
+.blob-dark { background: #500000; bottom: -200px; left: -100px; animation: pulse 12s infinite alternate-reverse; }
 
-@keyframes fade { from{opacity:0; transform: translateY(10px);} to{opacity:1; transform:translateY(0);} }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2) translate(30px, 30px); }
+}
+.vignette {
+    position: absolute; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 40%, #000 100%);
+}
+
+/* Навигация */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%; width: 100%;
+}
+.logo { font-size: 1.5rem; display: flex; align-items: center; gap: 10px; cursor: default; }
+.nav-links a {
+    color: var(--text-grey); text-decoration: none; margin-left: 30px; transition: 0.3s; cursor: pointer;
+}
+.nav-links a:hover { color: var(--accent-red); }
+
+/* Геро секция */
+section { min-height: 100vh; display: flex; align-items: center; padding: 80px 20px; position: relative; flex-direction: column; }
+.hero-section { justify-content: flex-start; text-align: center; }
+.hero-content { margin-top: 10vh; max-width: 800px; }
+.hero-content h1 { font-size: 4rem; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px; }
+@media (min-width: 768px) { .hero-content h1 { font-size: 5rem; } }
+.red-text { color: var(--accent-red); text-shadow: 0 0 40px rgba(255, 0, 0, 0.4); }
+.hero-content p { font-size: 1.3rem; color: var(--text-grey); margin-bottom: 40px; }
+
+.stat-item { 
+    display: inline-block; background: rgba(255, 255, 255, 0.05); 
+    padding: 15px 30px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.stat-val { display: block; font-size: 1.5rem; color: #fff; }
+.stat-label { font-size: 0.9rem; color: var(--text-grey); }
+.scroll-down { color: white; font-size: 1.5rem; animation: bounce 2s infinite; display: inline-block; margin-top: 30px;}
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+/* Контейнер и Карточки */
+.container { max-width: 1100px; margin: 0 auto; width: 100%; }
+.purchase-grid { display: grid; grid-template-columns: 1fr; gap: 40px; width: 100%; }
+@media (min-width: 900px) { .purchase-grid { grid-template-columns: 1.2fr 0.8fr; } }
+
+.card, .f-card, .info-card, .review-card {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
 
 /* Формы */
-input {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background: #fff;
-    font-size: 16px;
-    box-sizing: border-box;
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; margin-bottom: 8px; color: var(--text-grey); font-size: 0.9rem; }
+.input-group input, .input-group select {
+    width: 100%; padding: 16px; 
+    background: rgba(0, 0, 0, 0.6); 
+    border: 1px solid #333; border-radius: 12px; 
+    color: #fff; font-size: 1rem; outline: none; transition: 0.3s;
 }
-
-input:focus { outline: none; border-color: var(--bash-blue); }
-
-.btn {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+.input-group input:focus, .input-group select:focus { 
+    border-color: var(--accent-red); box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); 
 }
+.row-inputs { display: flex; gap: 15px; }
+.row-inputs .input-group { flex: 1; }
+.price-input { color: var(--accent-red) !important; font-weight: bold; font-size: 1.1rem; }
 
-.btn-primary {
-    background: var(--bash-green);
-    color: white;
+.buy-btn-main {
+    width: 100%; padding: 18px; background: var(--accent-red); color: white;
+    border: none; border-radius: 12px; font-size: 1.1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s; font-weight: bold;
 }
+.buy-btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4); }
 
-.btn-accent {
-    background: var(--honey-gold);
-    color: #3d2e00;
+/* Правая часть и преимущства */
+.benefits-side { display: flex; flex-direction: column; gap: 20px; }
+.info-card { display: flex; align-items: center; gap: 20px; }
+.steps { list-style: none; margin-top: 15px; }
+.steps li { margin-bottom: 12px; font-size: 0.95rem; color: #ccc; }
+.steps span { 
+    display: inline-block; width: 24px; height: 24px; background: #333; 
+    border-radius: 50%; text-align: center; line-height: 24px; 
+    margin-right: 10px; color: var(--accent-red); font-size: 0.8rem;
 }
+.section-h { text-align: center; font-size: 2.5rem; margin-bottom: 50px; width: 100%; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; width: 100%; }
+.f-card { text-align: center; transition: transform 0.3s; }
+.f-card:hover { transform: translateY(-10px); border-color: var(--accent-red); }
 
-/* Банковская карта */
-.card-visual {
-    background: linear-gradient(135deg, var(--bash-green), var(--bash-blue));
-    color: white;
-    padding: 25px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 119, 73, 0.3);
+/* ОТЗЫВЫ */
+.reviews-section { min-height: auto; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; }
+.review-header { display: flex; gap: 15px; align-items: center; margin-bottom: 15px; }
+.r-avatar {
+    width: 50px; height: 50px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 1.2rem; color: #fff;
 }
+.review-text { color: #ccc; font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+.review-date { font-size: 0.8rem; color: #666; display: block; text-align: right; }
+.stars { font-size: 0.8rem; }
 
-/* Орнамент (условно) */
-.card-visual::after {
-    content: "✿";
-    position: absolute;
-    right: -10px;
-    bottom: -20px;
-    font-size: 120px;
-    opacity: 0.1;
-    transform: rotate(-15deg);
+/* КАРТИНКИ */
+.emoji-sm { width: 20px; vertical-align: middle; margin-left: 5px; }
+.emoji-md { width: 50px; }
+.emoji-lg { width: 70px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); }
+.emoji-btn { width: 24px; margin-left: 10px; }
+
+/* === МОДАЛЬНЫЕ ОКНА === */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: 0.3s;
+    backdrop-filter: blur(5px);
 }
-
-.balance { font-size: 32px; font-weight: bold; margin: 10px 0; }
-.card-num { font-family: monospace; font-size: 18px; letter-spacing: 2px; }
-
-/* История */
-.tx-item {
-    display: flex;
-    justify-content: space-between;
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content {
+    background: #1a1a1a; padding: 40px; border-radius: 20px;
+    border: 1px solid #333; text-align: center; max-width: 400px; width: 90%;
+    transform: translateY(20px); transition: 0.3s;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
-.income { color: var(--bash-green); }
-.outcome { color: #d32f2f; }
-
-.bottom-nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 20px;
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-icon { font-size: 3rem; margin-bottom: 20px; }
+.modal-close-btn {
+    margin-top: 20px; padding: 12px 30px; background: #333; color: white;
+    border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;
 }
+.modal-close-btn:hover { background: var(--accent-red); }
+
+/* История заказов */
+.history-content { max-width: 600px; text-align: left; }
+.orders-list { max-height: 300px; overflow-y: auto; margin-top: 20px; margin-bottom: 20px; border-top: 1px solid #333; }
+.order-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 0; border-bottom: 1px solid #333;
+}
+.order-info span { display: block; font-size: 0.9rem; color: #888; }
+.order-info strong { color: #fff; font-size: 1.1rem; }
+.order-status { font-size: 0.85rem; padding: 4px 8px; border-radius: 4px; background: #222; }
+.order-status.success { color: #2ecc71; background: rgba(46, 204, 113, 0.1); }
+.empty-text { text-align: center; padding: 20px; color: #555; }
+
+/* === ЧАТ ПОДДЕРЖКИ === */
+.chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 900; }
+.chat-btn {
+    padding: 15px 25px; background: var(--accent-red); color: white;
+    border: none; border-radius: 50px; font-weight: bold; cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4); display: flex; align-items: center; gap: 10px;
+    font-size: 1rem; transition: 0.3s;
+}
+.chat-btn:hover { transform: scale(1.05); }
+
+.chat-window {
+    position: absolute; bottom: 70px; right: 0;
+    width: 350px; height: 500px;
+    background: #1a1a1a; border: 1px solid #333;
+    border-radius: 20px; display: flex; flex-direction: column;
+    overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(20px);
+    transition: 0.3s; box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+.chat-window.active { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.chat-header {
+    background: #222; padding: 15px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #333;
+}
+.operator-info { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+.status-dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 5px #2ecc71; }
+.close-chat { background: none; border: none; color: #888; cursor: pointer; font-size: 1.2rem; }
+
+.chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.message { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; }
+.message.system { align-self: flex-start; background: #333; color: #fff; border-bottom-left-radius: 2px; }
+.message.user { align-self: flex-end; background: var(--accent-red); color: #fff; border-bottom-right-radius: 2px; }
+
+.chat-input-area { padding: 15px; border-top: 1px solid #333; display: flex; gap: 10px; background: #222; }
+.chat-input-area input {
+    flex: 1; background: #111; border: 1px solid #444; padding: 10px;
+    border-radius: 8px; color: white; outline: none;
+}
+.chat-input-area button {
+    background: var(--accent-red); border: none; width: 40px; border-radius: 8px;
+    color: white; cursor: pointer; transition: 0.2s;
+}
+.chat-input-area button:disabled { opacity: 0.5; cursor: not-allowed; }
