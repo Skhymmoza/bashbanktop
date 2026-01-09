@@ -1,0 +1,362 @@
+[
+  {
+    "number": 1,
+    "name": "RED"
+  },
+  {
+    "number": 2,
+    "name": "GREEN"
+  },
+  {
+    "number": 3,
+    "name": "BLUE"
+  },
+  {
+    "number": 4,
+    "name": "YELLOW"
+  },
+  {
+    "number": 5,
+    "name": "ORANGE"
+  },
+  {
+    "number": 6,
+    "name": "PURPLE"
+  },
+  {
+    "number": 7,
+    "name": "LIME"
+  },
+  {
+    "number": 8,
+    "name": "PINK"
+  },
+  {
+    "number": 9,
+    "name": "CHERRY"
+  },
+  {
+    "number": 10,
+    "name": "BLACK"
+  },
+  {
+    "number": 11,
+    "name": "INDIGO"
+  },
+  {
+    "number": 12,
+    "name": "WHITE"
+  },
+  {
+    "number": 13,
+    "name": "MAGENTA"
+  },
+  {
+    "number": 14,
+    "name": "CRIMSON"
+  },
+  {
+    "number": 15,
+    "name": "GOLD"
+  },
+  {
+    "number": 16,
+    "name": "AZURE"
+  },
+  {
+    "number": 17,
+    "name": "PLATINUM"
+  },
+  {
+    "number": 18,
+    "name": "AQUA"
+  },
+  {
+    "number": 19,
+    "name": "GRAY"
+  },
+  {
+    "number": 20,
+    "name": "ICE"
+  },
+  {
+    "number": 21,
+    "name": "CHILLI"
+  },
+  {
+    "number": 22,
+    "name": "CHOCO"
+  },
+  {
+    "number": 23,
+    "name": "MOSCOW"
+  },
+  {
+    "number": 24,
+    "name": "SPB"
+  },
+  {
+    "number": 25,
+    "name": "UFA"
+  },
+  {
+    "number": 26,
+    "name": "SOCHI"
+  },
+  {
+    "number": 27,
+    "name": "KAZAN"
+  },
+  {
+    "number": 28,
+    "name": "SAMARA"
+  },
+  {
+    "number": 29,
+    "name": "ROSTOV"
+  },
+  {
+    "number": 30,
+    "name": "ANAPA"
+  },
+  {
+    "number": 31,
+    "name": "EKATERINBURG"
+  },
+  {
+    "number": 32,
+    "name": "KRASNODAR"
+  },
+  {
+    "number": 33,
+    "name": "ARZAMAS"
+  },
+  {
+    "number": 34,
+    "name": "NOVOSIBIRSK"
+  },
+  {
+    "number": 35,
+    "name": "GROZNY"
+  },
+  {
+    "number": 36,
+    "name": "SARATOV"
+  },
+  {
+    "number": 37,
+    "name": "OMSK"
+  },
+  {
+    "number": 38,
+    "name": "IRKUTSK"
+  },
+  {
+    "number": 39,
+    "name": "VOLGOGRAD"
+  },
+  {
+    "number": 40,
+    "name": "VORONEZH"
+  },
+  {
+    "number": 41,
+    "name": "BELGOROD"
+  },
+  {
+    "number": 42,
+    "name": "MAKHACHKALA"
+  },
+  {
+    "number": 43,
+    "name": "VLADIKAVKAZ"
+  },
+  {
+    "number": 44,
+    "name": "VLADIVOSTOK"
+  },
+  {
+    "number": 45,
+    "name": "KALININGRAD"
+  },
+  {
+    "number": 46,
+    "name": "CHELYABINSK"
+  },
+  {
+    "number": 47,
+    "name": "KRASNOYARSK"
+  },
+  {
+    "number": 48,
+    "name": "CHEBOKSARY"
+  },
+  {
+    "number": 49,
+    "name": "KHABAROVSK"
+  },
+  {
+    "number": 50,
+    "name": "PERM"
+  },
+  {
+    "number": 51,
+    "name": "TULA"
+  },
+  {
+    "number": 52,
+    "name": "RYAZAN"
+  },
+  {
+    "number": 53,
+    "name": "MURMANSK"
+  },
+  {
+    "number": 54,
+    "name": "PENZA"
+  },
+  {
+    "number": 55,
+    "name": "KURSK"
+  },
+  {
+    "number": 56,
+    "name": "ARKHANGELSK"
+  },
+  {
+    "number": 57,
+    "name": "ORENBURG"
+  },
+  {
+    "number": 58,
+    "name": "KIROV"
+  },
+  {
+    "number": 59,
+    "name": "KEMEROVO"
+  },
+  {
+    "number": 60,
+    "name": "TYUMEN"
+  },
+  {
+    "number": 61,
+    "name": "TOLYATTI"
+  },
+  {
+    "number": 62,
+    "name": "IVANOVO"
+  },
+  {
+    "number": 63,
+    "name": "STAVROPOL"
+  },
+  {
+    "number": 64,
+    "name": "SMOLENSK"
+  },
+  {
+    "number": 65,
+    "name": "PSKOV"
+  },
+  {
+    "number": 66,
+    "name": "BRYANSK"
+  },
+  {
+    "number": 67,
+    "name": "OREL"
+  },
+  {
+    "number": 68,
+    "name": "YAROSLAVL"
+  },
+  {
+    "number": 69,
+    "name": "BARNAUL"
+  },
+  {
+    "number": 70,
+    "name": "LIPETSK"
+  },
+  {
+    "number": 71,
+    "name": "ULYANOVSK"
+  },
+  {
+    "number": 72,
+    "name": "YAKUTSK"
+  },
+  {
+    "number": 73,
+    "name": "TAMBOV"
+  },
+  {
+    "number": 74,
+    "name": "BRATSK"
+  },
+  {
+    "number": 75,
+    "name": "ASTRAKHAN"
+  },
+  {
+    "number": 76,
+    "name": "CHITA"
+  },
+  {
+    "number": 77,
+    "name": "KOSTROMA"
+  },
+  {
+    "number": 78,
+    "name": "VLADIMIR"
+  },
+  {
+    "number": 79,
+    "name": "KALUGA"
+  },
+  {
+    "number": 80,
+    "name": "N.NOVGOROD"
+  },
+  {
+    "number": 81,
+    "name": "TAGANROG"
+  },
+  {
+    "number": 82,
+    "name": "VOLOGDA"
+  },
+  {
+    "number": 83,
+    "name": "TVER"
+  },
+  {
+    "number": 84,
+    "name": "TOMSK"
+  },
+  {
+    "number": 85,
+    "name": "IZHEVSK"
+  },
+  {
+    "number": 86,
+    "name": "SURGUT"
+  },
+  {
+    "number": 87,
+    "name": "PODOLSK"
+  },
+  {
+    "number": 88,
+    "name": "MAGADAN"
+  },
+  {
+    "number": 89,
+    "name": "CHEREPOVETS"
+  },
+  {
+    "number": 90,
+    "name": "NORILSK"
+  }
+]
