@@ -3,71 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>БАШБАНК</title>
+    <title>Black Russia Premium Store</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app">
-        <div class="kurai-header">
-            <div class="logo-text">⚜ БАШБАНК</div>
-            <div class="logo-sub">Национальный банк</div>
-        </div>
 
-        <div id="auth" class="screen active">
-            <h2 style="text-align:center; color:var(--bash-green)">Салам! 👋</h2>
-            <p style="text-align:center; color:#666; margin-bottom:30px;">Войдите в личный кабинет</p>
-            
-            <input type="text" id="l-login" placeholder="Логин">
-            <input type="password" id="l-pass" placeholder="Пароль">
-            
-            <button class="btn btn-primary" onclick="app.login()">Войти</button>
-            <button class="btn" style="background:transparent; color:#666; margin-top:10px" onclick="app.toReg()">Нет аккаунта? Создать</button>
-        </div>
-
-        <div id="reg" class="screen">
-            <h2 style="text-align:center">Яңы клиент</h2>
-            <input type="text" id="r-name" placeholder="ФИО">
-            <input type="text" id="r-login" placeholder="Придумайте логин">
-            <input type="tel" id="r-phone" placeholder="Телефон">
-            <input type="password" id="r-pass" placeholder="Пароль">
-            
-            <button class="btn btn-accent" onclick="app.register()">Открыть карту</button>
-            <button class="btn" style="background:transparent" onclick="app.toAuth()">Назад</button>
-        </div>
-
-        <div id="dash" class="screen">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <b id="u-name">Клиент</b>
-                <span onclick="app.logout()" style="color:red; cursor:pointer; font-size:14px;">Выход ➜</span>
-            </div>
-
-            <div class="card-visual">
-                <div style="font-size:12px; opacity:0.8">Ваш баланс</div>
-                <div class="balance" id="u-bal">0 ₽</div>
-                <div class="card-num" id="u-card">2202 **** **** 0000</div>
-                <img src="https://img.icons8.com/color/48/000000/mir.png" style="width:40px; position:absolute; bottom:20px; right:20px;">
-            </div>
-
-            <div class="bottom-nav">
-                <button class="btn btn-accent" onclick="app.showTransfer()">➤ Перевод</button>
-                <button class="btn btn-primary" onclick="alert('Пополнение работает через СБП')">✚ Пополнить</button>
-            </div>
-
-            <h3 style="margin-top:25px">История операций</h3>
-            <div id="history-list"></div>
-        </div>
-
-        <div id="transfer" class="screen">
-            <h3>💸 Перевод денег</h3>
-            <p style="color:#666; font-size:14px; margin-bottom:20px;">Комиссия 0% внутри Башкирии</p>
-            
-            <input type="text" id="t-card" placeholder="Номер карты получателя">
-            <input type="number" id="t-sum" placeholder="Сумма (₽)">
-            
-            <button class="btn btn-accent" onclick="app.doTransfer()">Отправить</button>
-            <button class="btn" style="background:#ddd; margin-top:10px;" onclick="app.showDash()">Отмена</button>
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon" id="modal-icon"></div>
+            <h3 id="modal-title">Заголовок</h3>
+            <p id="modal-text">Текст уведомления</p>
+            <button class="modal-close-btn" id="modal-close">Понятно</button>
         </div>
     </div>
-    <script src="app.js"></script>
+
+    <div id="history-modal" class="modal-overlay">
+        <div class="modal-content history-content">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> История покупок</h3>
+            <div id="orders-list" class="orders-list">
+                <p class="empty-text">История пуста</p>
+            </div>
+            <button class="modal-close-btn" onclick="document.getElementById('history-modal').classList.remove('active')">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="bg-layer">
+        <div class="glow blob-red"></div>
+        <div class="glow blob-dark"></div>
+        <div class="vignette"></div>
+    </div>
+
+    <section class="hero-section">
+        <nav class="navbar" data-aos="fade-down">
+            <div class="logo">BR SHOP <img src="diamond.png" class="emoji-sm" alt="diamond"></div>
+            <div class="nav-links">
+                <a href="#purchase">Купить</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#" id="open-history-btn">Мои заказы</a>
+            </div>
+        </nav>
+
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
+            <h1 class="glitch">BLACK RUSSIA <span class="red-text">CURRENCY</span></h1>
+            <p>Премиальный сервис продажи игровых ресурсов</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-val" id="global-counter">52,592,829,829</span>
+                    <span class="stat-label">Доступно виртов <img src="fire.png" class="emoji-sm" alt="fire"></span>
+                </div>
+            </div>
+            <a href="#purchase" class="scroll-down"><i class="fa-solid fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <section id="purchase" class="main-section">
+        <div class="container">
+            <div class="purchase-grid">
+                <div class="form-wrapper" data-aos="fade-right">
+                    <div class="card purchase-card">
+                        <div class="card-title">
+                            <h3>Оформление заказа</h3>
+                        </div>
+                        <form id="purchase-form">
+                            <div class="input-group">
+                                <label><i class="fa-solid fa-server"></i> Игровой сервер</label>
+                                <select id="server-select">
+                                    <option value="" disabled selected>Выберите сервер...</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label><i class="fa-solid fa-user-ninja"></i> Игровой ник</label>
+                                <input type="text" id="nickname" placeholder="Ivan_Ivanov">
+                            </div>
+                            <div class="row-inputs">
+                                <div class="input-group">
+                                    <label><i class="fa-solid fa-box-open"></i> Сумма (КК)</label>
+                                    <input type="number" id="amount" value="1" min="1">
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fa-solid fa-wallet"></i> Стоимость</label>
+                                    <input type="text" id="total-price" readonly class="price-input">
+                                </div>
+                            </div>
+                            <button class="buy-btn-main" id="buy-btn">
+                                Оплатить заказ <img src="rocket.png" class="emoji-btn" alt="rocket">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="benefits-side" data-aos="fade-left">
+                    <div class="info-card tg-card">
+                        <img src="telegram.png" class="emoji-md" alt="telegram">
+                        <div>
+                            <h4>Наш Telegram</h4>
+                            <p>Розыгрыши каждую неделю</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h4>Как это работает?</h4>
+                        <ul class="steps">
+                            <li><span>1</span> Выберите сервер и сумму</li>
+                            <li><span>2</span> Укажите ваш никнейм</li>
+                            <li><span>3</span> Получите вирты в течение 5 минут</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2 class="section-h" data-aos="fade-up">Что говорят игроки</h2>
+            <div class="reviews-grid">
+                <div class="review-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="review-header">
+                        <div class="r-avatar" style="background: #ff4757">A</div>
+                        <div>
+                            <h5>Artem_Grozny</h5>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Брал 50кк на Red, пришли моментально. Думал скам, а реально работает. Спасибо!"</p>
+                    <span class="review-date">Вчера</span>
+                </div>
+
+                <div class="review-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="review-header">
+                        <div class="r-avatar" style="background: #2ed573">K</div>
+                        <div>
+                            <h5>Kirill_Soprano</h5>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Поддержка отвечает быстро, помогли с оплатой. Вирты получил, уже купил гелик)"</p>
+                    <span class="review-date">Сегодня</span>
+                </div>
+
+                <div class="review-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="review-header">
+                        <div class="r-avatar" style="background: #ffa502">M</div>
+                        <div>
+                            <h5>Maks_Korzh</h5>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Самый ровный магазин. Беру уже 3 раз, всегда бонусы накидывают. Рекомендую!"</p>
+                    <span class="review-date">2 часа назад</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="features-section">
+        <div class="container">
+            <h2 class="section-h" data-aos="fade-up">Наши преимущества</h2>
+            <div class="features-grid">
+                <div class="f-card" data-aos="flip-left" data-aos-delay="100">
+                    <img src="flash.png" class="emoji-lg" alt="flash">
+                    <h4>Скорость</h4>
+                    <p>Автоматическая система выдачи 24/7</p>
+                </div>
+                <div class="f-card" data-aos="flip-left" data-aos-delay="200">
+                    <img src="shield.png" class="emoji-lg" alt="shield">
+                    <h4>Защита</h4>
+                    <p>Ни одного бана за 3 года работы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="chat-widget">
+        <button id="chat-toggle-btn" class="chat-btn">
+            <i class="fa-solid fa-headset"></i> Поддержка
+        </button>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <div class="operator-info">
+                    <div class="status-dot"></div>
+                    <span>Менеджер поддержки</span>
+                </div>
+                <button id="chat-close" class="close-chat"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message system">
+                    Здравствуйте! Чем я могу вам помочь сегодня?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Введите вопрос...">
+                <button id="send-msg-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 BR SHOP — Игровые ценности</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
